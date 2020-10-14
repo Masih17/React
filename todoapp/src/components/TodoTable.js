@@ -8,6 +8,7 @@ function TodoTable(props) {
                     <tr >
                         <th >Date</th>
                         <th >Description</th>
+                        <th >Priority</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -17,6 +18,7 @@ function TodoTable(props) {
                             <tr key={index}>
                                 <td>{item.date} </td>
                                 <td>{item.description}</td>
+                                <td>{item.priority}</td>
                                 <td><button onClick={() => props.deleteRow(index)}>Delete</button></td>
                             </tr>
                         )

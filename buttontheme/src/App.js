@@ -5,11 +5,16 @@ import ThemeContext from './ThemeContext'
 export const buttonThemes = {
   blue: {
     color: 'white',
-    backgroundColor: 'blue'
+    backgroundColor: 'blue',
+    width: '100px',
+    height: "30px"
+
   },
   black: {
     color: 'white',
-    backgroundColor: 'black'
+    backgroundColor: 'black',
+    width: '100px',
+    height: "30px"
   },
 };
 
