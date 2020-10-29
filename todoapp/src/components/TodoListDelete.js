@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { AgGridReact} from 'ag-grid-react';
+import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
-import '../App.css'
+import '../App.css';
 
 
 function TodolistDelete() {
@@ -18,20 +18,20 @@ function TodolistDelete() {
 
     const inputChanged = (event) => {
         setTask({ ...task, [event.target.name]: event.target.value });
-    }
+    };
 
     const addTask = () => {
         setTodolist([task, ...todolist]);
         setTask({ description: '', date: todayDate, priority: '' });
-    }
+    };
 
     const deleteRow = () => {
         if (gridRef.current.getSelectedNodes().length > 0) {
-            setTodolist(todolist.filter((task, index) => index !== gridRef.current.getSelectedNodes()[0].childIndex))
+            setTodolist(todolist.filter((task, index) => index !== gridRef.current.getSelectedNodes()[0].childIndex));
         } else {
             alert('Select row first');
         }
-    }
+    };
     const gridRef = React.useRef(); // Can also import this of course.
 
     const columns = [
@@ -41,7 +41,7 @@ function TodolistDelete() {
             headerName: 'Priority', field: 'priority', sortable: true, filter: true,
             cellStyle: params => params.value === "High" ? { color: 'red' } : { color: 'black' }
         }
-    ]
+    ];
     return (
         <div className='body'>
 
@@ -55,7 +55,7 @@ function TodolistDelete() {
                 <button onClick={deleteRow}>Delete</button>
             </div>
 
-            <div className="ag-theme-material" style={{ height: '700px', width: '55%', margin: 'auto'}}>
+            <div className="ag-theme-material" style={{ height: '700px', width: '60%', margin: 'auto' }}>
                 <AgGridReact
                     ref={gridRef}
                     onGridReady={params => gridRef.current = params.api}
