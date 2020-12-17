@@ -15,21 +15,22 @@ function TodolistDelete() {
 
 
     // today's date is now the default value of date field
-    const [date, setDate] = useState(new Date());
+    //const [date, setDate] = useState(new Date());
     const [task, setTask] = useState({ description: '', priority: '' });
     const [todolist, setTodolist] = useState([]);
 
     // formating the date
-    const finalDate = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
+
 
     // handling input changes and setting up the task
     const inputChanged = (event) => {
-        setTask({ ...task, [event.target.name]: event.target.value, date: finalDate });
+        setTask({ ...task, [event.target.name]: event.target.value });
     };
 
     // handling date changes
     const handleDateChange = (date) => {
-        setDate(date);
+        const finalDate = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
+        setTask(...task, finalDate);
     };
 
     // adding the task to the todolist array 
@@ -72,7 +73,7 @@ function TodolistDelete() {
 
                 <DatePicker
                     variant="inline"
-                    value={date}
+                    value={task.date}
                     onChange={date => handleDateChange(date)}
                     format="dd/MM/yyyy"
                 />

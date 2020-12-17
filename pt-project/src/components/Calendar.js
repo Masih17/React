@@ -1,7 +1,7 @@
 
 
 import React, { useState, useEffect } from "react";
-import { Calendar, dateFnsLocalizer, DateLocalizer, momentLocalizer } from "react-big-calendar";
+import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment, { duration } from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
@@ -50,7 +50,7 @@ function PtCalendar() {
     }
 
     return (
-        <div className="container mt-3" style={{ height: "80vh", margin: '60px' }}>
+        <div className="container mt-3" style={{ height: "600px", margin: '60px' }}>
             <Calendar
                 localizer={localizer}
                 events={events}
