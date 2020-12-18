@@ -27,7 +27,6 @@ function PtCalendar() {
     // Formatting Date string to date and add durations
 
     const dateFormatter = (string, duration) => {
-        console.log(string, duration);
         let initilTime = moment(string).format('YYYY-MM-DD HH:MM:ss.sss');
         let timePlusDuration = moment(initilTime).add(duration, 'minute').format('yyyy-MM-DD HH:MM:ss ');
         return timePlusDuration;

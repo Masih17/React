@@ -3,11 +3,7 @@ import Table from 'material-table';
 import DeleteIcon from "@material-ui/icons/Delete";
 import Moment from 'react-moment';
 import Snackbar from '@material-ui/core/Snackbar';
-import AddTraining from './AddTraining';
 import { Button, decomposeColor } from '@material-ui/core';
-
-
-
 
 
 function TrainingList(props) {
@@ -46,7 +42,6 @@ function TrainingList(props) {
         setOpen(false);
     };
 
-
     const columns = [
         {
             title: "Actions",
@@ -61,7 +56,6 @@ function TrainingList(props) {
                 </Button>
             ),
             sorting: false,
-
         },
         {
             title: "Workout",
