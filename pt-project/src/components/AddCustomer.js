@@ -40,7 +40,8 @@ function Addcustomer(props) {
     return (
         <div>
             <Button
-                variant="outlined"
+                variant="contained"
+                size="large"
                 color="primary"
                 onClick={handleClickOpen}
             >

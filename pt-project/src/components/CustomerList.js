@@ -5,8 +5,12 @@ import Addcustomer from './AddCustomer';
 import Addtraining from "./AddTraining";
 import Snackbar from '@material-ui/core/Snackbar';
 import Editcustomer from './EditCustomer';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import Paper from '@material-ui/core/Paper';
 
-function Customerlist(props) {
+
+function Customerlist() {
 
     const [customers, setCustomers] = useState([]);
     const [msg, setMsg] = useState('');
@@ -17,16 +21,19 @@ function Customerlist(props) {
     const getCustomers = () => {
         fetch("https://customerrest.herokuapp.com/api/customers")
             .then(response => response.json())
-            .then(data => setCustomers(data.content));
+            .then(data => {
+                setCustomers(data.content);
+            });
     };
 
-    const deleteCustomer = link => {
-        if (window.confirm("Are you sure?")) {
-            fetch(link, {
+    const deleteCustomer = customerData => {
+
+        if (window.confirm("Are you sure you want to delete " + customerData.firstname + "?")) {
+            fetch(customerData.links[0].href, {
                 method: 'DELETE'
             })
                 .then(res => getCustomers())
-                .then(_ => setMsg('Customer was deleted succesfully'))
+                .then(_ => setMsg(customerData.firstname + ' ' + customerData.lastname + ' was deleted succesfully'))
                 .then(_ => setOpen(true))
                 .catch(err => console.error(err));
         }
@@ -40,7 +47,7 @@ function Customerlist(props) {
             body: JSON.stringify(newCustomer)
         })
             .then(_ => getCustomers())
-            .then(_ => setMsg('Car added succesfully'))
+            .then(_ => setMsg('Customer added succesfully'))
             .then(_ => setOpen(true))
             .catch(err => console.error(err));
     };
@@ -59,14 +66,19 @@ function Customerlist(props) {
             .catch(err => console.error(err));
     };
 
-    const saveTraining = training => {
+    const addTraining = (link, training) => {
+
         fetch("https://customerrest.herokuapp.com/api/trainings", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(training)
         })
             .then(res => getCustomers())
-            .then(_ => setMsg('Training added succesfully'))
+            .then(res => {
+                setMsg('Training added succesfully');
+                setOpen(true);
+            })
+
             .catch(err => console.error(err));
     };
 
@@ -79,11 +91,14 @@ function Customerlist(props) {
             title: "Delete",
             field: "links[0].href",
             render: customerData => (
-                <DeleteIcon
-                    color="secondary"
-                    style={{ cursor: "pointer" }}
-                    onClick={(event, rowData) => deleteCustomer(event, rowData)}
-                ></DeleteIcon>
+                <IconButton >
+                    <Tooltip title="Delete" >
+                        <DeleteIcon
+                            color="secondary"
+                            onClick={() => deleteCustomer(customerData)}
+                        ></DeleteIcon>
+                    </Tooltip>
+                </IconButton>
             ),
             sorting: false
         },
@@ -91,8 +106,18 @@ function Customerlist(props) {
             title: "Edit",
             field: "links[0].href",
             render: customerData => (
-                //the JSX name of the props show match the one in component of course!
+                // Name of the props here should match the one in component of course!
                 <Editcustomer updateCustomer={updateCustomer} customer={customerData} />
+            ),
+            sorting: false
+        },
+        {
+            title: "Add training",
+            render: rowData => (
+                <Addtraining
+                    addTraining={addTraining}
+                    customerId={rowData.links[0].href}
+                />
             ),
             sorting: false
         },
@@ -124,30 +149,32 @@ function Customerlist(props) {
             title: "City",
             field: "city"
         },
-        {
-            title: "Add training",
-            render: rowData => (
-                <Addtraining
-                    addTraining={saveTraining}
-                    customerId={rowData.links[0].href}
-                />
-            ),
-            sorting: false
-        }
     ];
 
     return (
-        <div style={{ margin: '70px' }}>
+
+        <div style={{ margin: '50px' }}>
             <Addcustomer addCustomer={addCustomer} />
-            <Table
-                title="Trainings"
-                columns={columns}
-                data={customers}
-                options={{ pageSize: 10, pageSizeOptions: [10, 20, 40] }}
-            />
+            <Paper>
+                <Table
+                    title="Customers"
+                    columns={columns}
+                    data={customers}
+                    options={{
+                        pageSize: 10,
+                        pageSizeOptions: [10, 20, 40],
+                        headerStyle: {
+                            backgroundColor: '#e8f6ff',
+                            height: '90px',
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                        }
+                    }}
+                />
+            </Paper>
             <Snackbar
                 open={open}
-                autoHideDuration={3000}
+                autoHideDuration={4000}
                 onClose={handleClose}
                 message={msg}
             />

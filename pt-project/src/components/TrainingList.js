@@ -3,7 +3,9 @@ import Table from 'material-table';
 import DeleteIcon from "@material-ui/icons/Delete";
 import Moment from 'react-moment';
 import Snackbar from '@material-ui/core/Snackbar';
-import { Button, decomposeColor } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import Paper from '@material-ui/core/Paper';
 
 
 function TrainingList(props) {
@@ -47,14 +49,18 @@ function TrainingList(props) {
             title: "Actions",
             field: "id",
             render: rowData => (
-                <Button>
-                    <DeleteIcon
-                        style={{ cursor: "pointer" }}
-                        onClick={() => deleteTraining(rowData.id, rowData.activity, rowData.customer)}
-                    >
-                    </DeleteIcon>
-                </Button>
+
+                <IconButton >
+                    <Tooltip title="Delete" >
+                        <DeleteIcon
+                            color='secondary'
+                            onClick={() => deleteTraining(rowData.id, rowData.activity, rowData.customer)}
+                        >
+                        </DeleteIcon>
+                    </Tooltip>
+                </IconButton>
             ),
+
             sorting: false,
         },
         {
@@ -92,24 +98,34 @@ function TrainingList(props) {
 
     return (
         <div style={{ margin: '50px' }}>
-            <div>
-                <Table
-                    title="Trainings"
-                    columns={columns}
-                    data={trainings}
-                    options={{ pageSize: 10, pageSizeOptions: [10, 20, 40] }}
-                />
-
-            </div>
+            <Paper elevation={6} >
+                <div>
+                    <Table
+                        title="Trainings"
+                        columns={columns}
+                        data={trainings}
+                        options={{
+                            pageSize: 10,
+                            pageSizeOptions: [10, 20, 40],
+                            headerStyle: {
+                                backgroundColor: '#e8f6ff',
+                                height: '90px',
+                                fontSize: '16px',
+                                fontWeight: 'bold',
+                            }
+                        }}
+                    />
+                </div>
+            </Paper  >
             <div>
                 <Snackbar
                     open={open}
-                    autoHideDuration={3000}
+                    autoHideDuration={4000}
                     onClose={handleClose}
                     message={msg}
                 />
             </div>
-        </div>
+        </div >
     );
 };
 

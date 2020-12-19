@@ -5,11 +5,13 @@ import Dialog from "@material-ui/core/Dialog";
 import TextField from "@material-ui/core/TextField";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
-
+import IconButton from '@material-ui/core/IconButton';
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Tooltip from '@material-ui/core/Tooltip';
 
 
-function Addcustomer(props) {
+function EditCustomer(props) {
+
     const [open, setOpen] = useState(false);
     const [customer, setCustomer] = useState({
         firstname: "",
@@ -22,6 +24,7 @@ function Addcustomer(props) {
     });
 
     const handleClickOpen = () => {
+        console.log(props);
         setCustomer({
             firstname: props.customer.firstname,
             lastname: props.customer.lastname,
@@ -43,20 +46,22 @@ function Addcustomer(props) {
     };
 
     const updateCustomer = () => {
-        // the function on the other side takes to params
+        // (updateCustomer) is the props name passed from other component
         props.updateCustomer(customer, props.customer.links[0].href);
         handleClose();
     };
 
     return (
         <div>
-            <Button
-                size="small"
-                color="primary"
-                onClick={handleClickOpen}
-            >
-                <EditIcon />
-            </Button>
+            <IconButton >
+                <Tooltip title="Edit" >
+                    <EditIcon
+                        size="small"
+                        color="primary"
+                        onClick={handleClickOpen}
+                    />
+                </Tooltip>
+            </IconButton>
 
             <Dialog
                 open={open}
@@ -135,4 +140,4 @@ function Addcustomer(props) {
     );
 }
 
-export default Addcustomer;
+export default EditCustomer;

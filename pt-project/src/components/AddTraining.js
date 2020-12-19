@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import DateFnsUtils from '@date-io/date-fns';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -16,7 +16,6 @@ import {
 import moment from 'moment';
 
 function AddTraining(props) {
-    console.log(props);
     const [open, setOpen] = useState(false);
     const [workout, setWorkout] = useState({
         date: '',
@@ -34,7 +33,6 @@ function AddTraining(props) {
     };
 
     const handleClickOpen = () => {
-
         setOpen(true);
     };
 
@@ -45,30 +43,26 @@ function AddTraining(props) {
     const addTraining = () => {
         props.addTraining(props.customer, workout);
         closeDialog();
-        console.log(props.customer);
     };
 
     return (
         <div>
-
-            <Tooltip title="Add" aria-label="add">
-                <AddCircleIcon variant="outlined" color="primary" onClick={handleClickOpen} />
-            </Tooltip>
+            <IconButton >
+                <Tooltip title="Add" >
+                    <AddCircleIcon variant="outlined" color="primary" onClick={handleClickOpen} />
+                </Tooltip>
+            </IconButton>
 
             <Dialog open={open} onClose={closeDialog} >
-                <DialogTitle >
-                    New Training
-                </DialogTitle>
                 <DialogContent>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <KeyboardDateTimePicker
                             format="dd.MM.yyyy HH:MM"
                             ampm={false}
                             margin="dense"
-                            id="date-picker-dialog"
                             label="Date"
                             inputValue={workout.date}
-                            onChange={e => handleDateChange(moment(e).format('DD.MM.yyyy HH:MM'))}
+                            onChange={e => handleDateChange(moment(e).format())}
                             disablePast
                         />
 

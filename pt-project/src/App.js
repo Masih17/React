@@ -8,34 +8,25 @@ import Calendar from './components/Calendar';
 
 
 
-function App(props) {
+function App() {
 
   return (
 
     <div className="App">
 
-      {/* < Switch >
-              <Route exact path="/:page?" render={props => <Home {...props} />} />
-              <Redirect exact from="/" to="/trainings" />
-              <Route path="/calendar" component={TrainingList} />
-              <Route path="/customers" component={CustomerList} />
-              <Route path="/calendar" component={Calendar} />
-            </Switch> */}
-
       <Router>
         <div>
-          <Switch>
+          < Switch >
             <Tabs />
             <Redirect exact from="/" to="/trainings" />
-            <Route exact path="/trainings" render={props => <TrainingList {...props} />} />
-            <Route exact path="/customers" render={props => <Customerlist {...props} />} />
-            <Route exact path="/calendar" render={props => <Calendar {...props} />} />
+            <Route path="/calendar" component={TrainingList} />
+            <Route path="/customers" component={Customerlist} />
+            <Route path="/calendar" component={Calendar} />
             <Route render={() => <h1>Page not found</h1>} />
           </Switch>
         </div>
       </Router>
     </div>
-
   );
 }
 

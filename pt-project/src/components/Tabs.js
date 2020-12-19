@@ -9,6 +9,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TrainingList from './TrainingList';
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const HomeTabs = (props) => {
+const HomeTabs = () => {
 
     const classes = useStyles();
     const [selectedTab, setSelectedTab] = React.useState(0);
@@ -43,7 +44,7 @@ const HomeTabs = (props) => {
             <AppBar position="static">
                 <Toolbar className={classes.toolbar}>
                     <Typography className={classes.title} variant="h5" noWrap>
-                        Personal Trainer Schedule
+                        Personal Trainer Project
                     </Typography>
                 </Toolbar>
             </AppBar>
