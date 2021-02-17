@@ -90,6 +90,13 @@ The ` -i ` option makes the pattern case insensitive.
 Command bellow finds all ssh activities on February 14. 
 
     grep -i 'feb 14' /var/log/auth.log | grep 'ssh'
+    
+Other useful commands that provide useful information regarding security are as follows: 
+
+`last` show a listing of last logged in users.
+
+`w` Show who is logged on and what they are doing.
+
 
 To search the whole log file, instead of tail commands such as `cat, less` or `more` can be used.
 
