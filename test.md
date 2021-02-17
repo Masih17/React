@@ -5,7 +5,7 @@
 This is for those who are interested in learning a bit more of the Linux OS, DevOps, the command line, the file system and security models. 
 
 
-#### 1. Set up public key – private key pair authentication for developers = students
+## 1. Set up public key – private key pair authentication for developers = students
 SSH key creation (on local machine) and copying the public key to remote host for a single user (this case oppppi4)
 
 [Source 1 for ssh key creation](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-20-04 "Google's Homepage")
@@ -66,7 +66,7 @@ Restart the ssh-service with sudo-priviledges
 
 	sudo systemctl restart ssh
 
-#### 2. Read the tail of the security logs. 
+## 2. Read the tail of the security logs. 
 Linux log files are located in **/var/log** directory. The authentication logs are stored in **auth.log** file. A sudo-privileged user can view the content of the file. To see a part of the log file, tail or head command can be used. Tail displays the end of the file or head the beginning of the file. 
 
 Example below prints 10 last lines of the file by default.
@@ -93,7 +93,7 @@ Command bellow finds all ssh activities on February 14.
 
 To search the whole log file, instead of tail commands such as `cat, less` or `more` can be used.
 
-### 3. Run commands that e.g. tell what ports the processes are listening to. 
+## 3. Run commands that e.g. tell what ports the processes are listening to. 
 To investigate sockets in Linux, `ss` command is can be used. Most common options used with ss command are as follows: 
 
 - `-l`, to display only the listening sockets
@@ -134,7 +134,7 @@ Older ways to retrieve the result above was using net-tools and netstat command.
 
 	sudo netstat –tunlp
 
-### 4. Run commands e.g. finding out what are all the processes running for the MariaDB database / create-React-app front dev env  / Node backend server.
+## 4. Run commands e.g. finding out what are all the processes running for the MariaDB database / create-React-app front dev env  / Node backend server.
 
 `pgrep` command looks through the currently running processes and lists the process IDs which match the selection criteria. By adding `-a` option we can list PID and full command line.
 
@@ -176,7 +176,7 @@ Forwarding with ssh
 
 	ssh -L freePort:serverIP:port user@sshserver	(`-L` for local host)
 
-### 6. Other command line commands.
+## 6. Other command line commands.
 Basic commands
 
 `pwd`: current working directory
