@@ -95,6 +95,8 @@ Other useful commands that provide useful information regarding security are as 
 
 `last` show a listing of last logged in users.
 
+`lastb` command is the same as last command, by default it shows the log of the file ‘/var/log/btmp’ file, which contains all bad login attempts.
+
 `w` Show who is logged on and what they are doing.
 
 
