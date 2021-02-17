@@ -11,7 +11,9 @@ SSH key creation (on local machine) and copying the public key to remote host fo
 [Source 2 for ssh key creation](https://linuxize.com/post/how-to-set-up-ssh-keys-on-ubuntu-20-04/ "Google's Homepage")
 
 // *server IP: 86.50.253.117*
+
 // *server username: oppppi4*
+
 // *remote_hostname@remote_server_ip: ''oppppi4@86.50.253.117''*
 
 Starting by creating 4096 bit `RSA` public/private key-pair fn:firstname, ln:lastname to add email as comment to the key-pair 
